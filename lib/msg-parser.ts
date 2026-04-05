@@ -115,7 +115,8 @@ export function parseMsg(buffer: ArrayBuffer): ParsedMessage {
     for (const meta of info.attachments) {
       try {
         // msgreader needs the original meta object to resolve content
-        const resolved = reader.getAttachment(meta) as {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const resolved = reader.getAttachment(meta as any) as {
           fileName?: string;
           content?: Uint8Array;
         };
