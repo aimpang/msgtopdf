@@ -55,6 +55,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          name="description"
+          content="Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool."
+        />
+        <meta property="og:title" content="MSG to PDF — Convert Outlook .MSG Files Instantly" />
+        <meta
+          property="og:description"
+          content="Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool."
+        />
+        <meta property="og:url" content="https://msgtopdf.tools" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MSG to PDF" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MSG to PDF — Convert Outlook .MSG Files Instantly" />
+        <meta
+          name="twitter:description"
+          content="Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool."
+        />
+        <link rel="canonical" href="https://msgtopdf.tools" />
+      </head>
       <body className="min-h-screen font-sans antialiased">
         <ThemeProvider
           attribute="class"

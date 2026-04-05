@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -12,13 +11,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
-
-export const metadata: Metadata = {
-  title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
-  description:
-    "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
-  alternates: { canonical: "/" },
-};
 
 const softwareJsonLd = {
   "@context": "https://schema.org",
