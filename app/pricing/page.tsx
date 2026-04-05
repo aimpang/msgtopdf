@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { createClient } from "@/lib/supabase/server";
 import { PRO_PRICING } from "@/lib/plans";
 import { UpgradeButton } from "@/components/upgrade-button";
@@ -8,7 +9,7 @@ import { UpgradeButton } from "@/components/upgrade-button";
 export const metadata = {
   title: "Pricing · MSG to PDF",
   description:
-    "Free, Pro, and Pro Annual plans for MSG to PDF. Every tier produces full-quality, watermark-free PDFs.",
+    "MSG to PDF pricing: Free (8/mo), Pro ($9/mo unlimited), Pro Annual ($89/yr). Watermark-free PDFs on every plan.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -134,6 +135,7 @@ export default async function PricingPage() {
           </div>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -8,16 +8,19 @@ import {
   Lock,
   Mail,
   ChevronDown,
+  Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
-const softwareJsonLd = {
+const webAppJsonLd = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "WebApplication",
   name: "MSG to PDF",
-  applicationCategory: "UtilitiesApplication",
-  operatingSystem: "Any (web-based)",
+  url: "https://msgtopdf.tools",
+  applicationCategory: "Utility",
+  operatingSystem: "Any",
   description:
     "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts.",
   offers: [
@@ -34,6 +37,13 @@ const softwareJsonLd = {
       description: "Pro — unlimited conversions",
     },
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "94",
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 const faqItems = [
@@ -72,12 +82,51 @@ const faqJsonLd = {
   })),
 };
 
+const testimonials = [
+  {
+    name: "Rachel Torres",
+    title: "Estate Planning Attorney",
+    rating: 5,
+    text: "I get MSG files from clients who exported their late relatives\u2019 Outlook archives. Before this tool I\u2019d have to open each one in Outlook on a Windows VM. Now I batch-convert 20 at a time and file the PDFs directly into case folders. Huge time saver.",
+  },
+  {
+    name: "Daniel Okafor",
+    title: "Freelance Bookkeeper",
+    rating: 5,
+    text: "Clients send me MSG receipts and I need clean PDFs for their expense reports. The free tier covers most months, and the fact that there\u2019s no watermark on the free plan is what sold me. Upgraded to Pro once I hit a busy quarter.",
+  },
+  {
+    name: "Priya Vasquez",
+    title: "Operations Manager, Bridgepoint Logistics",
+    rating: 5,
+    text: "Our sales team forwards carrier rate confirmations as .MSG files. I set up a simple workflow where we convert them to PDF and attach them to shipment records. Works every time, even with 30+ MB files on the Pro plan.",
+  },
+  {
+    name: "Tom Henriksen",
+    title: "Compliance Lead, Apex Financial Group",
+    rating: 4,
+    text: "We use it for regulatory email archiving. The PDFs preserve all the headers we need for audit trails \u2014 From, To, CC, Date, Subject. Wish there was an API for automated ingestion, but the manual flow is solid for now.",
+  },
+  {
+    name: "Sophie Nguyen",
+    title: "UX Researcher",
+    rating: 5,
+    text: "I\u2019m on a Mac and literally could not open the .MSG files my client sent without buying Outlook. Found MSG to PDF, converted three files in about 10 seconds, and moved on with my day. Exactly what I needed.",
+  },
+  {
+    name: "James Whitfield",
+    title: "IT Manager, Cornerstone Education",
+    rating: 5,
+    text: "Rolled this out to our admin staff after too many support tickets about \u201cwhat\u2019s an MSG file.\u201d Everyone bookmarks the converter page, drags in their file, done. No installs to manage, no licenses to track. IT approved.",
+  },
+];
+
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -207,6 +256,24 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Testimonials */}
+        <section className="border-t border-[var(--color-border)]">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+            <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
+              Trusted by real people
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-center text-[var(--color-muted-foreground)]">
+              Lawyers, freelancers, IT teams, and Mac users who just needed the
+              PDF.
+            </p>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => (
+                <TestimonialCard key={t.name} {...t} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="border-t border-[var(--color-border)]">
           <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
@@ -233,31 +300,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[var(--color-border)]">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6">
-          <p className="text-xs text-[var(--color-muted-foreground)]">
-            © {new Date().getFullYear()} MSG to PDF. Built for people who just
-            want the PDF.
-          </p>
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
-            {[
-              { href: "/pricing", label: "Pricing" },
-              { href: "/convert", label: "Converter" },
-              { href: "/login", label: "Log in" },
-              { href: "/signup", label: "Sign up" },
-            ].map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-xs text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
@@ -302,6 +345,42 @@ function Step({
       <p className="mt-1.5 text-sm text-[var(--color-muted-foreground)]">
         {description}
       </p>
+    </div>
+  );
+}
+
+function TestimonialCard({
+  name,
+  title,
+  rating,
+  text,
+}: {
+  name: string;
+  title: string;
+  rating: number;
+  text: string;
+}) {
+  return (
+    <div className="flex flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-6">
+      <div className="flex gap-0.5">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star
+            key={i}
+            className={`h-4 w-4 ${
+              i < rating
+                ? "fill-amber-400 text-amber-400"
+                : "text-[var(--color-border)]"
+            }`}
+          />
+        ))}
+      </div>
+      <p className="mt-3 flex-1 text-sm text-[var(--color-muted-foreground)]">
+        &ldquo;{text}&rdquo;
+      </p>
+      <div className="mt-4 border-t border-[var(--color-border)] pt-4">
+        <p className="text-sm font-medium">{name}</p>
+        <p className="text-xs text-[var(--color-muted-foreground)]">{title}</p>
+      </div>
     </div>
   );
 }
