@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "https://msgtopdf.com";
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://msgtopdf.tools";
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
     description:
       "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
+    url: "/",
     type: "website",
     siteName: "MSG to PDF",
   },
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
     description:
-      "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs. Free online tool.",
+      "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
   },
 };
 
