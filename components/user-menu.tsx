@@ -17,12 +17,6 @@ export async function UserMenu() {
     return (
       <div className="flex items-center gap-1">
         <Link
-          href="/pricing"
-          className="hidden rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-muted-foreground)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)] sm:inline-flex"
-        >
-          Pricing
-        </Link>
-        <Link
           href="/login"
           className="rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-muted-foreground)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
         >

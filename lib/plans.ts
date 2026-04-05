@@ -49,10 +49,10 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
 };
 
 export const PRO_PRICING = {
-  monthlyUsd: 9,
-  annualUsd: 89,
-  annualMonthlyEquivalentUsd: 7.42, // 89 / 12
-  annualSavingsMonthsFree: 2,
+  monthlyUsd: 9.99,
+  annualUsd: 89.99,
+  annualMonthlyEquivalentUsd: 7.50, // 89.99 / 12
+  annualSavingsMonthsFree: 3,
 } as const;
 
 export function getLimits(plan: Plan): PlanLimits {

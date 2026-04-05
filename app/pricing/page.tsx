@@ -9,7 +9,7 @@ import { UpgradeButton } from "@/components/upgrade-button";
 export const metadata = {
   title: "Pricing · MSG to PDF",
   description:
-    "MSG to PDF pricing: Free (8/mo), Pro ($9/mo unlimited), Pro Annual ($89/yr). Watermark-free PDFs on every plan.",
+    "MSG to PDF pricing: Free (8/mo), Pro ($9.99/mo unlimited), Pro Annual ($89.99/yr). Watermark-free PDFs on every plan.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -105,7 +105,7 @@ export default async function PricingPage() {
               title="Pro Annual"
               price={`$${PRO_PRICING.annualUsd}`}
               cadence="per year"
-              description={`Same Pro features, billed yearly — save ${PRO_PRICING.annualSavingsMonthsFree} months.`}
+              description={`Same Pro features, save ${PRO_PRICING.annualSavingsMonthsFree} months.`}
               highlights={[
                 `Equivalent to $${PRO_PRICING.annualMonthlyEquivalentUsd.toFixed(2)}/mo`,
                 "Unlimited conversions",

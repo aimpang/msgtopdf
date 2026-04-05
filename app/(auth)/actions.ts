@@ -94,14 +94,8 @@ export async function signUp(
   const { error } = await supabase.auth.signUp({
     email,
     password,
-    options: {
-      emailRedirectTo: `${origin}/auth/callback?next=${encodeURIComponent(next)}`,
-    },
   });
   if (error) return { error: error.message };
 
-  return {
-    success:
-      "Check your inbox to confirm your email. After confirming, you can log in.",
-  };
+  redirect(next);
 }
