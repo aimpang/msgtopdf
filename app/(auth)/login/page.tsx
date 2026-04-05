@@ -2,6 +2,9 @@ import { AuthForm } from "@/components/auth-form";
 
 export const metadata = {
   title: "Log in · MSG to PDF",
+  description:
+    "Log in to your MSG to PDF account to view conversion history and manage your plan.",
+  alternates: { canonical: "/login" },
 };
 
 export default async function LoginPage({

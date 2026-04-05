@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -7,13 +8,89 @@ import {
   FileText,
   Lock,
   Mail,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 
+export const metadata: Metadata = {
+  title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
+  description:
+    "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
+  alternates: { canonical: "/" },
+};
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "MSG to PDF",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Any (web-based)",
+  description:
+    "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts.",
+  offers: [
+    {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description: "Free tier — 8 conversions per month",
+    },
+    {
+      "@type": "Offer",
+      price: "9",
+      priceCurrency: "USD",
+      description: "Pro — unlimited conversions",
+    },
+  ],
+};
+
+const faqItems = [
+  {
+    question: "How do I open a .MSG file without Outlook?",
+    answer:
+      "Upload your .MSG file to MSG to PDF and we\u2019ll convert it to a clean, readable PDF in seconds. No Outlook installation or Microsoft account required \u2014 it works entirely in your browser on any device.",
+  },
+  {
+    question: "How do I convert MSG to PDF for free?",
+    answer:
+      "Just drag and drop your .MSG files onto the converter page. The free tier gives you 8 conversions per month with no account required. Every PDF is full-quality and watermark-free, regardless of plan.",
+  },
+  {
+    question: "What is a .MSG file?",
+    answer:
+      "A .MSG file is Microsoft Outlook\u2019s proprietary format for storing individual email messages, including the subject, sender, recipients, body text, and attachments. Because it\u2019s an Outlook-specific format, opening it normally requires Outlook or a compatible email client \u2014 or a converter like MSG to PDF.",
+  },
+  {
+    question: "How do I convert MSG to PDF on Mac?",
+    answer:
+      "Since MSG to PDF runs entirely in the browser, it works on macOS, Windows, Linux, and even mobile devices. Open the converter, drop your .MSG file, and download the PDF. No Outlook for Mac needed.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SiteHeader />
 
       {/* Hero */}
@@ -45,8 +122,8 @@ export default function LandingPage() {
               files to PDF instantly
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-[var(--color-muted-foreground)]">
-              No Outlook needed. Works in your browser. Drop your files, get
-              clean PDFs in seconds.
+              Open MSG files without Outlook. Works in your browser. Drop your
+              files, get clean PDFs in seconds.
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -88,7 +165,7 @@ export default function LandingPage() {
             <FeatureCard
               icon={<Zap className="h-5 w-5" />}
               title="Blazing fast"
-              description="MSG files parsed and rendered to clean PDFs in seconds — not minutes."
+              description="Convert .MSG files to clean PDFs in seconds — not minutes. No software to install."
             />
             <FeatureCard
               icon={<ShieldCheck className="h-5 w-5" />}
@@ -98,7 +175,7 @@ export default function LandingPage() {
             <FeatureCard
               icon={<Mail className="h-5 w-5" />}
               title="Headers & attachments"
-              description="Keep From/To/Subject/Date and optionally export attachments alongside."
+              description="Our Outlook MSG converter preserves From, To, Subject, Date and optionally exports attachments alongside."
             />
           </div>
         </section>
@@ -134,6 +211,31 @@ export default function LandingPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="border-t border-[var(--color-border)]">
+          <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+            <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
+              Frequently asked questions
+            </h2>
+            <div className="mt-10 flex flex-col gap-3">
+              {faqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)]"
+                >
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-4 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+                    {item.question}
+                    <ChevronDown className="h-4 w-4 shrink-0 text-[var(--color-muted-foreground)] transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="border-t border-[var(--color-border)] px-6 py-4 text-sm text-[var(--color-muted-foreground)]">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
         </section>

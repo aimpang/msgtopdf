@@ -7,6 +7,9 @@ import { UpgradeButton } from "@/components/upgrade-button";
 
 export const metadata = {
   title: "Pricing · MSG to PDF",
+  description:
+    "Free, Pro, and Pro Annual plans for MSG to PDF. Every tier produces full-quality, watermark-free PDFs.",
+  alternates: { canonical: "/pricing" },
 };
 
 export default async function PricingPage() {

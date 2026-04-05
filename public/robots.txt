@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-# Keep internal API and auth routes out of indexes
-Disallow: /api/
-Disallow: /auth/
-Disallow: /dashboard
-
-Sitemap: https://msgtopdf.com/sitemap.xml

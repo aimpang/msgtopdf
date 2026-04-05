@@ -14,6 +14,9 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Dashboard · MSG to PDF",
+  description:
+    "View your conversion history, usage, and plan details.",
+  alternates: { canonical: "/dashboard" },
 };
 
 interface ConversionRow {

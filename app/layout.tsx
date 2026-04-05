@@ -2,23 +2,39 @@ import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://msgtopdf.com";
+
 export const metadata: Metadata = {
-  title: "MSG to PDF — Convert Outlook .MSG files to PDF instantly",
+  metadataBase: new URL(APP_URL),
+  title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
   description:
-    "A truly web-based converter for Outlook .MSG files. No Outlook, no installs. Clean PDFs in seconds.",
+    "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
   applicationName: "MSG to PDF",
   authors: [{ name: "MSG to PDF" }],
   keywords: [
     "msg to pdf",
+    "convert .msg file",
     "outlook msg converter",
+    "open msg file without outlook",
     "email to pdf",
     "convert msg online",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "MSG to PDF — Convert Outlook .MSG files to PDF instantly",
+    title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
     description:
-      "A truly web-based converter for Outlook .MSG files. No Outlook, no installs.",
+      "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs, no accounts. Free online tool.",
     type: "website",
+    siteName: "MSG to PDF",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MSG to PDF — Convert Outlook .MSG Files Instantly",
+    description:
+      "Convert Outlook .MSG files to clean PDFs in seconds. No Outlook needed, no installs. Free online tool.",
   },
 };
 
