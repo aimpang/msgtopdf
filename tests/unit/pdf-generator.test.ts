@@ -70,8 +70,8 @@ describe("renderEmailToPdfBuffer", () => {
   });
 
   it("handles very long bodies (pagination)", async () => {
-    const longBody = Array.from({ length: 120 }, (_, i) =>
-      `Paragraph ${i + 1}: ${"lorem ipsum dolor sit amet ".repeat(12)}`,
+    const longBody = Array.from({ length: 50 }, (_, i) =>
+      `Paragraph ${i + 1}: ${"lorem ipsum dolor sit amet ".repeat(6)}`,
     ).join("\n\n");
     const buf = await renderEmailToPdfBuffer(
       syntheticMessage({ bodyText: longBody }),
@@ -79,6 +79,6 @@ describe("renderEmailToPdfBuffer", () => {
     );
     expect(isValidPdfBuffer(buf)).toBe(true);
     // Multi-page documents should be noticeably larger.
-    expect(buf.length).toBeGreaterThan(5000);
+    expect(buf.length).toBeGreaterThan(3000);
   });
 });

@@ -22,6 +22,36 @@ import {
   isValidPdfBuffer,
 } from "../helpers/synthetic";
 
+// Mock next/headers for route tests
+vi.mock("next/headers", () => {
+  const fakeCookies = new Map<string, string>();
+  return {
+    cookies: vi.fn(async () => ({
+      get: (name: string) => {
+        const value = fakeCookies.get(name);
+        return value ? { name, value } : undefined;
+      },
+      set: (name: string, value: string) => {
+        fakeCookies.set(name, value);
+      },
+      getAll: () => Array.from(fakeCookies.entries()).map(([name, value]) => ({ name, value })),
+    })),
+  };
+});
+
+// Mock Supabase and usage for route tests
+vi.mock("@/lib/supabase/server", () => ({
+  createClient: vi.fn(async () => ({ auth: { getUser: vi.fn(async () => ({ data: { user: null } })) } })),
+  createServiceClient: vi.fn(async () => ({ from: vi.fn(() => ({})) })),
+}));
+
+vi.mock("@/lib/usage.ts", () => ({
+  getUserContext: vi.fn(async () => ({ userId: null, email: null, plan: "guest" })),
+  getUsageSummary: vi.fn(async () => ({ plan: "guest", used: 0, limit: 3, remaining: 3, approaching: false, exceeded: false })),
+  checkCanConvert: vi.fn(async () => ({ ok: true })),
+  incrementGuestUsage: vi.fn(async () => {}),
+}));
+
 vi.mock("@/lib/msg-parser", async () => {
   const helpers = await import("../helpers/synthetic");
   return {
