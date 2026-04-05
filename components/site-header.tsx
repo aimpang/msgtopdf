@@ -26,7 +26,6 @@ export function SiteHeader() {
             Pricing
           </Link>
           <ThemeToggle />
-          {/* @ts-expect-error Async Server Component */}
           <UserMenu />
         </nav>
       </div>
