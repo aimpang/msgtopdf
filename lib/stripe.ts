@@ -16,7 +16,7 @@ export function getStripe(): Stripe {
   }
   cached = new Stripe(key, {
     // Pin an API version so Stripe's silent rollouts don't break prod.
-    apiVersion: "2024-12-18.acacia",
+    apiVersion: "2025-02-24.acacia",
     typescript: true,
     appInfo: { name: "MSG to PDF", version: "0.1.0" },
   });
