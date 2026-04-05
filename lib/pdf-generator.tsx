@@ -181,7 +181,6 @@ export function EmailPdfDocument({
                 const src = toDataUrl(att.content, att.contentType!);
                 return (
                   <View key={`img-${i}`} style={styles.inlineImageWrap} wrap={false}>
-                    {/* @ts-expect-error react-pdf Image src accepts data URL */}
                     <Image src={src} style={styles.inlineImage} />
                     <Text style={styles.inlineImageCaption}>{att.fileName}</Text>
                   </View>
