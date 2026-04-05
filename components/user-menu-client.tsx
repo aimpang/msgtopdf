@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { LayoutDashboard, LogOut, CreditCard, UserCircle } from "lucide-react";
 
 /**
@@ -15,10 +15,29 @@ export function UserMenuClient({
   planLabel: string;
 }) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
+  const [isLoadingBilling, setIsLoadingBilling] = useState(false);
 
   const closeMenu = () => {
     if (detailsRef.current) {
       detailsRef.current.open = false;
+    }
+  };
+
+  const openBillingPortal = async () => {
+    setIsLoadingBilling(true);
+    try {
+      const response = await fetch("/api/billing-portal", { method: "POST" });
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || "Failed to open billing portal");
+      }
+    } catch (error) {
+      alert("Failed to open billing portal");
+      console.error(error);
+    } finally {
+      setIsLoadingBilling(false);
     }
   };
 
@@ -41,9 +60,17 @@ export function UserMenuClient({
         <MenuLink href="/dashboard" icon={<LayoutDashboard className="h-4 w-4" />} onClick={closeMenu}>
           Dashboard
         </MenuLink>
-        <MenuLink href="/pricing" icon={<CreditCard className="h-4 w-4" />} onClick={closeMenu}>
-          Pricing & billing
-        </MenuLink>
+        <button
+          onClick={() => {
+            closeMenu();
+            openBillingPortal();
+          }}
+          disabled={isLoadingBilling}
+          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-[var(--color-muted)] disabled:opacity-50"
+        >
+          <CreditCard className="h-4 w-4" />
+          {isLoadingBilling ? "Loading..." : "Pricing & billing"}
+        </button>
         <div className="my-1 border-t border-[var(--color-border)]" />
         <form action="/auth/signout" method="post">
           <button
