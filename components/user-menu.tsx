@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getLimits, type Plan } from "@/lib/plans";
 import { UserMenuClient } from "./user-menu-client";
