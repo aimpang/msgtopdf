@@ -110,7 +110,7 @@ export default async function PricingPage() {
               highlights={[
                 `Equivalent to $${PRO_PRICING.annualMonthlyEquivalentUsd.toFixed(2)}/mo`,
                 "Unlimited conversions",
-                "50 MB per file",
+                "100 MB per file",
                 "Full conversion history with downloads",
               ]}
               cta={

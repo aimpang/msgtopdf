@@ -119,7 +119,7 @@ export default function TermsPage() {
                     </tr>
                     <tr>
                       <td className="px-4 py-2">Pro Annual</td>
-                      <td className="px-4 py-2">50 MB</td>
+                      <td className="px-4 py-2">100 MB</td>
                       <td className="px-4 py-2">Unlimited</td>
                     </tr>
                   </tbody>

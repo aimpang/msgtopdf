@@ -367,7 +367,7 @@ function PlanChip({ me }: { me: Me | null }) {
             Monthly limit reached ({me.usage.used}/{me.usage.limit})
           </p>
           <p className="text-xs text-[var(--color-muted-foreground)]">
-            Upgrade to Pro for unlimited conversions and 50 MB files.
+            Upgrade to Pro for unlimited conversions and larger file support.
           </p>
         </div>
         <Link href="/pricing">

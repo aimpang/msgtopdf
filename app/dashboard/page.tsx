@@ -103,8 +103,8 @@ export default async function DashboardPage() {
               </p>
               <p className="mt-1 text-sm text-[var(--color-muted-foreground)]">
                 {isPaidPlan(ctx.plan)
-                  ? "Pro plan · 50 MB per file"
-                  : "Free plan · upgrade for 50 MB files"}
+                  ? `${limits.name} · ${Math.round(limits.maxFileSizeBytes / (1024 * 1024))} MB per file`
+                  : `${limits.name} · upgrade for larger files`}
               </p>
             </div>
           </div>

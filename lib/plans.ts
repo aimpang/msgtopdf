@@ -3,9 +3,10 @@
  *
  * Rules (per product spec):
  *   • No watermarks at any tier — Free and Pro produce identical PDFs.
- *   • Free:  8 conversions / calendar month,  15 MB per file
- *   • Pro:   unlimited,                       50 MB per file
- *   • Guest: 3 per browser session,           15 MB per file
+ *   • Free:      8 conversions / calendar month,  15 MB per file
+ *   • Pro:       unlimited,                       50 MB per file
+ *   • Pro Annual: unlimited,                      100 MB per file
+ *   • Guest:     3 per browser session,           15 MB per file
  *            (encourages signup without slamming the door on trial users)
  */
 
@@ -42,7 +43,7 @@ export const PLAN_LIMITS: Record<Plan, PlanLimits> = {
   },
   pro_annual: {
     name: "Pro Annual",
-    maxFileSizeBytes: 50 * MB,
+    maxFileSizeBytes: 100 * MB,
     monthlyConversions: null,
     hasHistoryDownloads: true,
   },

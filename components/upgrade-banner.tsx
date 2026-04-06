@@ -27,7 +27,7 @@ export function UpgradeBanner({ usage, className }: UpgradeBannerProps) {
       >
         <Sparkles className="h-4 w-4" />
         You&apos;re on {usage.plan === "pro_annual" ? "Pro Annual" : "Pro"} —
-        unlimited conversions and 50 MB files.
+        unlimited conversions and large file support.
       </div>
     );
   }
@@ -48,7 +48,7 @@ export function UpgradeBanner({ usage, className }: UpgradeBannerProps) {
               You&apos;ve used all {usage.limit} free conversions this month
             </p>
             <p className="text-xs text-[var(--color-muted-foreground)]">
-              Upgrade to Pro for unlimited conversions and 50 MB files.
+              Upgrade to Pro for unlimited conversions and larger file support.
             </p>
           </div>
         </div>
