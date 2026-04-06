@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   // to avoid bundling issues in the Node serverless runtime.
   serverExternalPackages: ["@react-pdf/renderer", "@kenjiuno/msgreader"],
   api: {
-    // Allow uploads up to 100MB for /api/convert route
+    // Allow uploads up to 60MB (Pro max is 50MB + form overhead)
     bodyParser: {
-      sizeLimit: "100mb",
+      sizeLimit: "60mb",
     },
   },
   experimental: {
