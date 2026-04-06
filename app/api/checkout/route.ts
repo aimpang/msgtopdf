@@ -78,6 +78,7 @@ export async function POST(request: Request) {
     client_reference_id: user.id,
     subscription_data: {
       metadata: { supabase_user_id: user.id },
+      ...(plan === "monthly" ? { trial_period_days: 3 } : {}),
     },
   });
 

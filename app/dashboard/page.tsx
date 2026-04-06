@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { UsageMeter } from "@/components/usage-meter";
 import { UpgradeBanner } from "@/components/upgrade-banner";
+import { TrialBanner } from "@/components/trial-banner";
 
 export const dynamic = "force-dynamic";
 
@@ -42,6 +43,12 @@ export default async function DashboardPage() {
   const limits = getLimits(ctx.plan);
 
   const admin = createServiceClient();
+  const { data: profile } = await admin
+    .from("profiles")
+    .select("subscription_status, current_period_end")
+    .eq("id", user.id)
+    .single();
+
   const { data: history } = await admin
     .from("conversions")
     .select(
@@ -53,6 +60,8 @@ export default async function DashboardPage() {
 
   const rows = (history ?? []) as ConversionRow[];
   const canDownloadHistory = isPaidPlan(ctx.plan);
+  const isTrialing = profile?.subscription_status === "trialing";
+  const trialEndsAt = isTrialing ? profile?.current_period_end : null;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -77,6 +86,9 @@ export default async function DashboardPage() {
             </Link>
           </div>
 
+          {isTrialing && trialEndsAt && (
+            <TrialBanner trialEndsAt={trialEndsAt} className="mb-6" />
+          )}
           <UpgradeBanner usage={usage} className="mb-6" />
 
           {/* Stats */}

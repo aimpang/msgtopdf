@@ -9,7 +9,7 @@ import { UpgradeButton } from "@/components/upgrade-button";
 export const metadata = {
   title: "Pricing · MSG to PDF",
   description:
-    "MSG to PDF pricing: Free (8/mo), Pro ($9.99/mo unlimited), Pro Annual ($89.99/yr). Watermark-free PDFs on every plan.",
+    "MSG to PDF pricing: Free (8/mo), Pro ($9.99/mo with 3-day free trial), Pro Annual ($89.99/yr). Watermark-free PDFs on every plan.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -78,7 +78,7 @@ export default async function PricingPage() {
               title="Pro"
               price={`$${PRO_PRICING.monthlyUsd}`}
               cadence="per month"
-              description="For people who convert emails every week."
+              description="For people who convert emails every week. 3-day free trial, cancel anytime."
               highlighted
               badge="Most popular"
               highlights={[
@@ -87,6 +87,7 @@ export default async function PricingPage() {
                 "Full conversion history with downloads",
                 "Priority support",
               ]}
+              footnote="No charge for 3 days. Cancel anytime."
               cta={
                 currentPlan === "pro" ? (
                   <DisabledCta label="Your current plan" />
@@ -94,7 +95,7 @@ export default async function PricingPage() {
                   <UpgradeButton
                     plan="monthly"
                     loggedIn={Boolean(user)}
-                    label="Upgrade to Pro"
+                    label="Start 3-day free trial"
                   />
                 )
               }
